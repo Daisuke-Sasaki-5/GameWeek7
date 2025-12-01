@@ -119,4 +119,9 @@ public class PlayerControll : MonoBehaviour
             checkTImer = 0;
         }
     }
+
+   public void ResetVelocity()
+    {
+        velocity = Vector3.zero;
+    }
 }

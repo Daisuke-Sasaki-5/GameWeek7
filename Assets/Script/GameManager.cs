@@ -7,11 +7,6 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
-
-    [Header("収集情報")]
-    public int totalItem = 3;
-    private int collectedItem = 0;
-
     private bool isStarted = false; // ゲーム開始済みフラグ
     private bool goalUnlock = false;
 
@@ -57,9 +52,10 @@ public class GameManager : MonoBehaviour
         isStarted = false;
         goalUnlock = false;
 
+        // プレイヤー操作禁止
+        FindObjectOfType<PlayerControll>().enabled = false;
+
         UIManager.Instance.ShowStartUI(this);
-        UIManager.Instance.UpdateItem(collectedItem,totalItem);
-        UIManager.Instance.HideGoal();
 
         // ゲーム停止中
         Time.timeScale = 0f;
@@ -80,27 +76,15 @@ public class GameManager : MonoBehaviour
         isStarted = true;
         Time.timeScale = 1f;
 
+        // プレイヤー操作可能にする
+        FindObjectOfType<PlayerControll>().enabled = true;
+
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
         UIManager.Instance.ShowStartUI(false);
 
         startTiem = Time.time;
-    }
-
-    /// <summary>
-    /// アイテムを拾った際に呼ばれる
-    /// </summary>
-    public void AddItem()
-    {
-        collectedItem++;
-        UIManager.Instance.UpdateItem(collectedItem, totalItem);
-
-        if(collectedItem >= totalItem)
-        {
-            goalUnlock = true;
-            UIManager.Instance.ShowGoal("Get Back in the Car");
-        }
     }
 
     public void TryClear()
@@ -111,10 +95,6 @@ public class GameManager : MonoBehaviour
             clearTime = Time.time - startTiem;
             PlayerPrefs.SetFloat("ClearTime",clearTime);
             SceneManager.LoadScene("ResultScene");
-        }
-        else
-        {
-            Debug.Log("まだ集めきってません");
         }
     }
 
