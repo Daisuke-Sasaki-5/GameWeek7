@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance { get; private set; }
     private bool isStarted = false; // ゲーム開始済みフラグ
-    private bool goalUnlock = false;
-
+    
     private float startTiem;
     private float clearTime;
 
@@ -50,7 +49,6 @@ public class GameManager : MonoBehaviour
         if (SceneManager.GetActiveScene().name != "GameScene") return;
 
         isStarted = false;
-        goalUnlock = false;
 
         // プレイヤー操作禁止
         FindObjectOfType<PlayerControll>().enabled = false;
@@ -89,13 +87,10 @@ public class GameManager : MonoBehaviour
 
     public void TryClear()
     {
-        if (goalUnlock)
-        {
-            Debug.Log("クリア");
-            clearTime = Time.time - startTiem;
-            PlayerPrefs.SetFloat("ClearTime",clearTime);
-            SceneManager.LoadScene("ResultScene");
-        }
+        Debug.Log("クリア");
+        clearTime = Time.time - startTiem;
+        PlayerPrefs.SetFloat("ClearTime", clearTime);
+        FadeManager.instance.FadeToScene("ResultScene");
     }
 
     private void OnEnable()

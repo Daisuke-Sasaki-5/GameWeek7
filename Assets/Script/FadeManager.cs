@@ -19,15 +19,7 @@ public class FadeManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        instance = this;
         fadepanel.raycastTarget = false;
         SetAlpha(0f);
     }
