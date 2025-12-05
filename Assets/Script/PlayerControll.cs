@@ -5,7 +5,7 @@ using UnityEngine.Animations;
 public class PlayerControll : MonoBehaviour
 {
     [Header("移動設定")]
-    private float moveSpeed = 5f;
+    private float moveSpeed = 3f;
     private float gravity = -9.81f;
     private float groundGravity = -2f;
 
@@ -13,17 +13,12 @@ public class PlayerControll : MonoBehaviour
     public float mouseSensitivityX = 3f;
     public float mouseSensitivityY = 2f;
     private float verticalLookLimit = 50f;
-    private float mouseMultiplier = 35f;
 
     public Transform cam;
 
     [Header("視点スムーズ")]
     [SerializeField] private float SmoothX = 0.1f;
     [SerializeField] private float SmoothY = 0.0f;
-
-    //[SerializeField] private PlayerFootStep footstep;
-    //[SerializeField] private float stepInterval = 0.5f;
-    //private float stepTImer;
 
     private float targetXRot;
     private float smoothXRot;

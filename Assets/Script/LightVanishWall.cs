@@ -49,6 +49,7 @@ public class LightVanishWall : MonoBehaviour
         }
     }
 
+    // ï«Çè¡Ç∑
     private void VanishWall()
     {
         isVanished = true;
@@ -58,6 +59,7 @@ public class LightVanishWall : MonoBehaviour
         col.enabled = false;
     }
 
+    // ï«ÇèoåªÇ≥ÇπÇÈ
     private void RestoreWall()
     {
         isVanished = false;

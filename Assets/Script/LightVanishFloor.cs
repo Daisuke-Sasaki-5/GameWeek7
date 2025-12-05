@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class LightVanishFloor : MonoBehaviour
 {
+    // プレイヤーに設定しているライトが当たったら消える処理
+
     [Header("参照")]
     [SerializeField] private Transform playerLight;
     [SerializeField] private Light spotLight;

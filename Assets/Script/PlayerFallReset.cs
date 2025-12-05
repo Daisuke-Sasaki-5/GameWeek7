@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerFallReset : MonoBehaviour
 {
+    // プレイヤーが落ちた時、スタート地点に戻す
     [SerializeField] private Transform respawnPoint;
 
     private void OnTriggerEnter(Collider other)
